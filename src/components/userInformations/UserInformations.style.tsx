@@ -12,14 +12,17 @@ import { convertPxToRem } from "../../helpers/utils";
 export const CardWrapper = styled.div`
   box-shadow: ${defaultShadow};
   background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 85%;
+  width: 95%;
   border-radius: ${defaultRadius};
   margin: ${convertPxToRem(25)} auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: ${mediumWidth}) {
+    width: 85%;
+  }
 `;
 
 export const CardHeader = styled.div`

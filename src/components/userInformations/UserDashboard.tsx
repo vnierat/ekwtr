@@ -10,6 +10,7 @@ import { useGetList } from "../../api/conso";
 import DefaultButton from "../button/DefaultButton";
 import { Fragment, useState } from "react";
 import UserConso from "./userConso/UserConso";
+import { getIconType } from "../../helpers/utils";
 
 const UserDashboard = () => {
   const [data, setData] = useState<Array<string>>([]);
@@ -34,7 +35,7 @@ const UserDashboard = () => {
                 key={index}
                 onClick={() => setData([pointOfDelivery, energy])}
               >
-                <DefaultButton {...{ energy }} />
+                <DefaultButton energy={energy} icon={getIconType(energy)} />
               </div>
             ))}
           </ContractsWrapper>

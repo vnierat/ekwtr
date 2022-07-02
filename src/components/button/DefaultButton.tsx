@@ -1,17 +1,16 @@
 import { FC } from "react";
 import { getEnergyType } from "../../helpers/utils";
 import { ButtonWrapper } from "./DefaultButton.style";
-import GazIcon from "../../assets/imgs/gaz.png";
-import ElecIcon from "../../assets/imgs/electricity.png";
 
 interface DefaultButtonProps {
   energy: string;
+  icon?: string;
 }
 
-const DefaultButton: FC<DefaultButtonProps> = ({ energy }) => {
+const DefaultButton: FC<DefaultButtonProps> = ({ energy, icon }) => {
   return (
     <ButtonWrapper>
-      <img src={energy === "gas" ? GazIcon : ElecIcon} alt="icon-energy" />
+      {icon && <img src={icon} alt="icon-energy" />}
       {getEnergyType(energy)}
     </ButtonWrapper>
   );

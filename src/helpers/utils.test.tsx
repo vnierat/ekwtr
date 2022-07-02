@@ -3,6 +3,7 @@ import { MOCK_CONTRACT } from "../mock/MockContract";
 import {
   convertPxToRem,
   getEnergyType,
+  getIconType,
   getListOfYears,
   getTitleContent,
 } from "./utils";
@@ -13,6 +14,15 @@ describe("getEnergyType", () => {
   });
   it("should return Gaz", () => {
     expect(getEnergyType(Energy.GAZ)).toEqual("Gaz");
+  });
+});
+
+describe("getIconType", () => {
+  it("should return GazIcon", () => {
+    expect(getIconType(Energy.GAZ)).toEqual("gaz.svg");
+  });
+  it("should return ElecIcon", () => {
+    expect(getIconType(Energy.ELECTRICITY)).toEqual("elec.svg");
   });
 });
 

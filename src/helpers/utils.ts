@@ -12,6 +12,15 @@ export const getEnergyType = (energy: string) => {
   }
 };
 
+export const getIconType = (energy: string) => {
+  switch (energy) {
+    case Energy.ELECTRICITY:
+      return ElecIcon;
+    case Energy.GAZ:
+      return GazIcon;
+  }
+};
+
 export const convertPxToRem = (px: number): string => `${px / 16}rem`;
 
 export const getTitleContent = (energy: string) => {

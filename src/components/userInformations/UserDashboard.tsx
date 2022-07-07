@@ -18,6 +18,10 @@ const UserDashboard = () => {
 
   const isSetData = Boolean(data.length);
 
+  const handleClick = (pointOfDelivery: string, energy: string) => {
+    setData([pointOfDelivery, energy]);
+  };
+
   return (
     <Fragment>
       <CardWrapper data-testid="card-wrapper">
@@ -31,12 +35,12 @@ const UserDashboard = () => {
           <span>Mes abonnements ekWateur :</span>
           <ContractsWrapper>
             {contracts.map(({ energy, pointOfDelivery }, index: number) => (
-              <div
+              <DefaultButton
                 key={index}
-                onClick={() => setData([pointOfDelivery, energy])}
-              >
-                <DefaultButton energy={energy} icon={getIconType(energy)} />
-              </div>
+                energy={energy}
+                icon={getIconType(energy)}
+                onClick={() => handleClick(pointOfDelivery, energy)}
+              />
             ))}
           </ContractsWrapper>
         </CardBody>

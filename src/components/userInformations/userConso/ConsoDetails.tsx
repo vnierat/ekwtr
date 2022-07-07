@@ -21,8 +21,8 @@ interface ConsoDetailsProps {
 
 const ConsoDetails: FC<ConsoDetailsProps> = ({
   year,
-  contractDetails,
   energyType,
+  contractDetails,
 }) => {
   const elecDataPerYear = contractDetails
     .filter(({ date }) => new Date(date).getFullYear() === year)
@@ -35,6 +35,19 @@ const ConsoDetails: FC<ConsoDetailsProps> = ({
     .filter(({ date }) => new Date(date).getFullYear() === year)
     .map(({ value, date, id }) => ({ value, date, id }));
 
+  const dataPerYear = Energy.GAZ
+    ? contractDetails
+        .filter(({ date }) => new Date(date).getFullYear() === year)
+        .map(({ value, date, id }) => ({ value, date, id }))
+    : contractDetails
+        .filter(({ date }) => new Date(date).getFullYear() === year)
+        .map(({ valueHP, valueHC, date, id }) => ({
+          valueHP,
+          valueHC,
+          date,
+          id,
+        }));
+
   return (
     <ConsoBody>
       <ConsoTitle>
@@ -45,7 +58,14 @@ const ConsoDetails: FC<ConsoDetailsProps> = ({
         {year ? (
           energyType === Energy.GAZ ? (
             <ChartsWrapper>
-              <GazTable {...{ gazDataPerYear }} />
+              <GazTable
+                {...{
+                  gazDataPerYear,
+                  energyType,
+                  year,
+                  dataPerYear,
+                }}
+              />
               <GazBarCharts {...{ gazDataPerYear }} />
             </ChartsWrapper>
           ) : (

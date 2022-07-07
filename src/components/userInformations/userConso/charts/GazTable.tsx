@@ -4,9 +4,17 @@ import { Table, TableButton, TableHead, Td, TdDate, Tr } from "./Charts.style";
 
 interface GazTableProps {
   gazDataPerYear: Contract[];
+  dataPerYear: Contract[];
+  energyType: string;
+  year: number | null;
 }
 
-const GazTable: FC<GazTableProps> = ({ gazDataPerYear }) => {
+const GazTable: FC<GazTableProps> = ({
+  gazDataPerYear,
+  energyType,
+  dataPerYear,
+  year,
+}) => {
   const [sortKey, setSortKey] = useState<SortKeys>("value");
   const [sortOrder, setSortOrder] = useState<SortOrder>("ascn");
 
@@ -15,6 +23,8 @@ const GazTable: FC<GazTableProps> = ({ gazDataPerYear }) => {
   type SortKeys = keyof Data[0];
 
   type SortOrder = "ascn" | "desc";
+
+  console.log(dataPerYear);
 
   const sortData = ({
     tableData,
@@ -38,7 +48,7 @@ const GazTable: FC<GazTableProps> = ({ gazDataPerYear }) => {
     return sortedData;
   };
 
-  function SortButton({
+  const SortButton = ({
     sortOrder,
     columnKey,
     sortKey,
@@ -48,7 +58,7 @@ const GazTable: FC<GazTableProps> = ({ gazDataPerYear }) => {
     columnKey: SortKeys;
     sortKey: SortKeys;
     onClick: MouseEventHandler<HTMLButtonElement>;
-  }) {
+  }) => {
     return (
       <TableButton
         onClick={onClick}
@@ -61,7 +71,7 @@ const GazTable: FC<GazTableProps> = ({ gazDataPerYear }) => {
         ▲
       </TableButton>
     );
-  }
+  };
 
   const headers: { key: SortKeys; label: string }[] = [
     { key: "id", label: "ID" },

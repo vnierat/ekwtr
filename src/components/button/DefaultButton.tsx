@@ -5,11 +5,12 @@ import { ButtonWrapper } from "./DefaultButton.style";
 interface DefaultButtonProps {
   energy: string;
   icon?: string;
+  onClick: () => void;
 }
 
-const DefaultButton: FC<DefaultButtonProps> = ({ energy, icon }) => {
+const DefaultButton: FC<DefaultButtonProps> = ({ energy, icon, onClick }) => {
   return (
-    <ButtonWrapper>
+    <ButtonWrapper onClick={onClick}>
       {icon && <img src={icon} alt="icon-energy" />}
       {getEnergyType(energy)}
     </ButtonWrapper>

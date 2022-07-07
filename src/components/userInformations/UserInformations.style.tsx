@@ -74,7 +74,7 @@ export const ContractsWrapper = styled.div`
   @media (min-width: ${mediumWidth}) {
     flex-direction: row;
 
-    > div:not(:last-child) {
+    > button:not(:last-child) {
       margin: 0 ${convertPxToRem(12)} 0 0;
     }
   }
